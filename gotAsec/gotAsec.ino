@@ -129,6 +129,10 @@ void loop() {
     endTime = now();
     endTime = usCentral.toLocal(endTime);
     duration = endTime - startTime;
+	
+	//BLE apparently has a 20 byte cap on a payload -- which is not being reassembled properly at the bluefruit app
+	// output: MMM DD HH:MM XX MINS  ..... all I can squeeze in there.
+	//         12345678901234567890
     output = months[month(startTime)] + " " + String(day(startTime)) + " " + \
              String(hour(startTime)) + ":" + String(minute(startTime)) + " " + String(duration) + " mins\n";
     Serial.println(output);
